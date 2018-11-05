@@ -5,6 +5,7 @@ import SystemHome from '@/components/SystemHome'
 //二级路由
 import MemberManagement from '@/components/Home/MemberManagement'
 import JobExamine from '@/components/Home/JobExamine'
+import HistoryJobManagement from '@/components/Home/HistoryJobManagement'
 import SystemSetting from '@/components/Home/SystemSetting'
 
 export const routes = [
@@ -13,6 +14,7 @@ export const routes = [
   {path:'/home',name:'homeLink',redirect:'/home/memberManagement',component:SystemHome,children:[
     {path:'/home/memberManagement',name:'memberManagementLink',component:MemberManagement},
     {path:'/home/jobExamine',name:'jobExamineLink',component:JobExamine},
+    {path:'/home/historyJobManagement',name:'historyJobLink',component:HistoryJobManagement},
     {path:'/home/systemSetting',name:'systemSetting',component:SystemSetting}
   ]}
 ]

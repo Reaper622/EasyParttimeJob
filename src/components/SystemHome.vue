@@ -2,7 +2,6 @@
     <div class="home">
         <el-container>
             <el-header>
-
                 <el-row class="headerRow"  :gutter="20" >
                     <el-col :span="8">
                         <img class="logo" src="../assets/UserSystem/images/parttime.png" alt="Logo">
@@ -25,8 +24,13 @@
                                 </el-dropdown-menu>
                             </el-dropdown>
                         </el-col>
-                        <el-col :span="4">
+                        <el-col :span="3">
                             <span class="username">欢迎,{{username}}</span>
+                        </el-col>
+                        <el-col :span="2">
+                          <el-tooltip class="item" effect="dark" content="注销" placement="bottom">
+                           <el-button type="danger" icon="el-icon-close" circle></el-button>
+                          </el-tooltip>
                         </el-col>
                     </el-row>
                 </el-row>
@@ -48,7 +52,11 @@
                         </el-menu-item>
                         <el-menu-item index="/home/jobExamine">
                             <i class="el-icon-date"></i>
-                            <span slot="title">信息审核</span>
+                            <span slot="title">兼职审核</span>
+                        </el-menu-item>
+                        <el-menu-item index="/home/historyJobManagement">
+                            <i class="el-icon-time"></i>
+                            <span slot="title">历史兼职</span>
                         </el-menu-item>
                         <el-menu-item index="/home/systemSetting">
                             <i class="el-icon-setting"></i>
@@ -57,7 +65,7 @@
                     </el-menu>
                 </el-aside>
                 <el-container>
-                    <el-main v-loading="isLoading"><router-view @addCar="addCarShow" @loaded="isLoaded"></router-view></el-main>
+                    <el-main v-loading="isLoading"><router-view  @loaded="isLoaded" @unloaded="isUnloaded"></router-view></el-main>
                     <el-footer>
                         &copy;Copyright:2018 易安兼职
                     </el-footer>
@@ -74,9 +82,10 @@ export default {
     data(){
         return{
             username:'李博文',
-            addCarState: false,
             isLoading: true
         }
+    },
+    watch:{
     },
     components:{
     },
@@ -87,14 +96,11 @@ export default {
       handleClose(key, keyPath) {
         console.log(key, keyPath);
       },
-      addCarShow(){
-          this.addCarState = true
-      },
-      addCarFade(){
-          this.addCarState = false
-      },
       isLoaded(){
-          this.isLoading = false
+          this.isLoading = false;
+      },
+      isUnloaded(){
+        this.isLoading = true;
       }
     }
 }

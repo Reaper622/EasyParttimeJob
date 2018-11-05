@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-        <job v-for="job in jobs" :key="job.id"
+        <history-job v-for="job in historyJobs" :key="job.id"
               :id="job.id"
               :summary="job.summary"
               :job-time="job.jobTime"
@@ -8,15 +8,15 @@
               :reward-type="job.rewardType"
               :address="job.address"
               :details="job.details"
-              :type="job.type"></job>
+              :type="job.type"></history-job>
     </div>
 </template>
 <script>
-import Job from  './Job/Job.vue'
+import HistoryJob from  './Job/HistoryJob.vue'
 export default {
     data() {
         return{
-          jobs:[]
+          historyJobs:[]
         }
     },
     beforeMount(){
@@ -28,7 +28,7 @@ export default {
       })
       .then(res => {
         console.log(res);
-        this._data.jobs = res.data.data;
+        this._data.historyJobs = res.data.data;
         //加载完成触发已加载事件
         this.$emit('loaded');
       })
@@ -36,7 +36,7 @@ export default {
     methods:{
     },
     components:{
-        Job
+        HistoryJob
     }
 }
 </script>

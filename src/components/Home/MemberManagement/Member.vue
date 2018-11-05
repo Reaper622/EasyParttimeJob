@@ -1,17 +1,17 @@
 <template>
   <div class="member">
-    <img src="../../../assets/UserSystem/images/baiduMap.jpg" alt="验证照片" class="identifyImg">
+    <img :src="photoUrl" alt="验证照片" class="identifyImg">
     <el-row class="attributeRow">
-      <el-col :span="8" :offset="2">用户ID:{{uid}}</el-col>
-      <el-col :span="8" :offset="2">用户名:{{name}}</el-col>
+      <el-col :span="8" :offset="2">用户ID:<span class="content">{{uid}}</span></el-col>
+      <el-col :span="8" :offset="2">用户名:<span class="content">{{name}}</span></el-col>
     </el-row>
     <el-row class="attributeRow">
-      <el-col :span="8" :offset="2">单位: {{unit}}</el-col>
-      <el-col :span="8" :offset="2">性别: {{sex}}</el-col>
+      <el-col :span="8" :offset="2">单位: <span class="content">{{unit != null?  unit : school}}</span></el-col>
+      <el-col :span="8" :offset="2">性别: <span class="content">{{sex == 0 ? "男" : "女"}}</span></el-col>
     </el-row>
     <el-row class="buttonRow">
-      <el-col :span="6" :offset="12"><el-button type="success" icon="el-icon-check">通过</el-button></el-col>
-      <el-col :span="6" ><el-button type="danger" icon="el-icon-close">拒绝</el-button></el-col>
+      <el-col :span="6" :offset="12"><el-button type="success" icon="el-icon-check" @click="pass">通过</el-button></el-col>
+      <el-col :span="6" ><el-button type="danger" icon="el-icon-close" @click="dispass" plain>拒绝</el-button></el-col>
     </el-row>
   </div>
 </template>
@@ -29,20 +29,66 @@ export default {
         type: String,
         required: true
       },
-      // 公司、商家的地址或者学校
+      // 公司、商家的地址
       unit: {
-        type: String,
-        required: true
+        type: String
+      },
+      //学校的地址
+      school:{
+        type: String
       },
       // 性别
       sex: {
-        type: String,
+        type: Number,
         required: true
       },
       // 图片地址
       photoUrl: {
-        type: Number,
+        type: String,
         //required: true
+      }
+    },
+    data(){
+      return{
+        //uid的data表现
+        userid:0,
+      }
+    },
+    watch:{
+      uid: (newVal, oldVal) => {
+        this.userid = newVal; //监听uid的变化，将父组件props的值传递给data
+      }
+    },
+    methods:{
+      //通过用户
+      pass(){
+        this.$axios.post('https://www.easy-mock.com/mock/5bdea625bc617620972b02aa/parttime/auditAccount',{
+          uid:this.userid, //用户的id
+          action:1 //pass的标致
+        })
+        .then((res) => {
+          console.log(res);
+          this.$message({
+            showClose:true,
+            message: '你已通过此用户!',
+            type: 'success'
+          });
+        })
+      },
+      //不通过用户
+      dispass(){
+        this.$axios.post('https://www.easy-mock.com/mock/5bdea625bc617620972b02aa/parttime/auditAccount',{
+          uid:this.userid, //用户的id
+          action:0 //dispass的标致
+        })
+        .then((res) => {
+          console.log(res);
+          this.$message({
+            showClose:true,
+            message: '你未批准此用户!',
+            type: 'error'
+          });
+        })
       }
     }
 }
@@ -55,12 +101,13 @@ export default {
     display: inline-block;
     width: 400px;
     height: 500px;
-    margin: 10px 20px;
+    margin: 10px 15px;
     background: url('../../../assets/UserSystem/images/memberManagement/memberBackground.png');
-    border: 1px solid #EBEEF5;
+    border: 3px solid #EBEEF5;
     border-radius: 10px;
     transition: box-shadow .3s ease;
     overflow: hidden;
+
   }
   .member:hover{
     box-shadow: 0 0 10px #888888;
@@ -76,6 +123,9 @@ export default {
     height: 60px;
     line-height: 60px;
     font-family:Aria
+  }
+  .content{
+    padding-left: 20px;
   }
   .buttonRow{
     margin-top: 60px;
