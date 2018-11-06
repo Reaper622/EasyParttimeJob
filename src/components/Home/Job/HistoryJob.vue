@@ -21,8 +21,8 @@
             <span>{{type}}</span>
           </div>
           <div class="buttonRow">
-            <el-button type="danger" icon="el-icon-close" @click="deleteJob"  plain class="buttons">删除</el-button>
-            <el-button type="info" icon="el-icon-check" @click="withdraw"  class="buttons">撤回</el-button>
+            <el-button type="danger" icon="el-icon-delete" @click="deleteJob"  plain class="buttons">删除</el-button>
+            <el-button type="info" icon="el-icon-sort" @click="withdraw"  class="buttons">撤回</el-button>
 
           </div>
         </div>

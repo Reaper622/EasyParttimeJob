@@ -15,6 +15,7 @@
                    <el-row type="flex" class="row" justify="center">
                        <el-col :span="16">
                            <el-input
+                           type="password"
                            placeholder="输入密码"
                            prefix-icon="el-icon-view"
                            v-model="passwordInput">
@@ -54,6 +55,7 @@ export default {
         })
         .then(res => {
           console.log(res);
+          this.$store.commit('changeLoginState',res.data.data);
           if (res.data.status == 1) {
             this.$router.replace({name:'homeLink'});
           }

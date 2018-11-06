@@ -27,9 +27,9 @@
                         <el-col :span="3">
                             <span class="username">欢迎,{{username}}</span>
                         </el-col>
-                        <el-col :span="2">
+                        <el-col :span="3">
                           <el-tooltip class="item" effect="dark" content="注销" placement="bottom">
-                           <el-button type="danger" icon="el-icon-close" circle></el-button>
+                           <el-button type="danger" icon="el-icon-close" @click="logout" >注销</el-button>
                           </el-tooltip>
                         </el-col>
                     </el-row>
@@ -66,9 +66,12 @@
                 </el-aside>
                 <el-container>
                     <el-main v-loading="isLoading"><router-view  @loaded="isLoaded" @unloaded="isUnloaded"></router-view></el-main>
-                    <el-footer>
+
+                    <!-- 底部栏暂时无用
+                      <el-footer>
                         &copy;Copyright:2018 易安兼职
                     </el-footer>
+                    -->
                 </el-container>
             </el-container>
         </el-container>
@@ -81,11 +84,14 @@ export default {
     name:'systemHome',
     data(){
         return{
-            username:'李博文',
-            isLoading: true
+            username:'',
+            isLoading: true,
         }
     },
     watch:{
+    },
+    mounted(){
+      this.username = this.$store.getters.getUsername;
     },
     components:{
     },
@@ -101,12 +107,34 @@ export default {
       },
       isUnloaded(){
         this.isLoading = true;
+      },
+      logout(){
+        this.$confirm('您确定要注销当前账号?','提示',{
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$store.commit('changeLoginState',{uid:null,name:null});
+          this.$router.replace({name:'loginLink'});
+        }).catch(() => {
+          this.$message({
+            type:'info',
+            message:'你已取消注销'
+          });
+        })
+
       }
     }
 }
 </script>
 
 <style scoped>
+     .home{
+       position: absolute;
+       width: 100%;
+       height: 100%;
+       overflow: hidden;
+     }
      .el-header{
          padding: 0 15px;
          margin-top: 10px;
@@ -127,6 +155,7 @@ export default {
         margin-top: 10px;
         height: 800px;
     }
+    /*底部栏样式
     .el-footer{
         height: 60px;
         text-align: center;
@@ -135,6 +164,7 @@ export default {
         line-height: 60px;
         border-top: 5px solid #2B333E;
     }
+    */
     .headerRightRow{
         height: 60px;
         margin: 5px 0;
