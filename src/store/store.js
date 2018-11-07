@@ -8,8 +8,8 @@ export default () => {
     state: {
       //储存当前登录用户的必要信息
       user:{
-        uid:Number,
-        name:String
+        uid:null,
+        name:null
       }
     },
     mutations:{

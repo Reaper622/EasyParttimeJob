@@ -12,9 +12,9 @@ export const routes = [
   {path:'/',name:'indexLink',redirect:'/login'},
   {path:'/login',name:'loginLink',component:Login},
   {path:'/home',name:'homeLink',redirect:'/home/memberManagement',component:SystemHome,children:[
-    {path:'/home/memberManagement',name:'memberManagementLink',component:MemberManagement},
-    {path:'/home/jobExamine',name:'jobExamineLink',component:JobExamine},
-    {path:'/home/historyJobManagement',name:'historyJobLink',component:HistoryJobManagement},
-    {path:'/home/systemSetting',name:'systemSetting',component:SystemSetting}
+    {path:'/home/memberManagement',name:'memberManagementLink',component:MemberManagement,meta:{requireLogin:true}},
+    {path:'/home/jobExamine',name:'jobExamineLink',component:JobExamine,meta:{requireLogin:true}},
+    {path:'/home/historyJobManagement',name:'historyJobLink',component:HistoryJobManagement,meta:{requireLogin:true}},
+    {path:'/home/systemSetting',name:'systemSetting',component:SystemSetting,meta:{requireLogin:true}}
   ]}
 ]
