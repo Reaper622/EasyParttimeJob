@@ -49,7 +49,16 @@ export default {
     },
     methods:{
       login() {
-        this.$axios.post('https://www.easy-mock.com/mock/5bdea625bc617620972b02aa/parttime/admin',{
+        if(this.usernameInput == ''){
+          this.$alert('请输入用户名!','提示',{
+            confirmButtonText:'我知道了',
+          })
+        }else if(this.passwordInput == ''){
+          this.$alert('请输入密码','提示',{
+            confirmButtonText:'我知道了',
+          })
+        }else{
+          this.$axios.post('https://www.easy-mock.com/mock/5bdea625bc617620972b02aa/parttime/admin',{
           uid: this.usernameInput,
           psw: this.passwordInput
         })
@@ -58,10 +67,16 @@ export default {
           this.$store.commit('changeLoginState',res.data.data);
           if (res.data.status == 1) {
             this.$router.replace({name:'homeLink'});
+          }else{
+            this.$alert('登录失败!','通知',{
+            confirmButtonText:'我知道了',
+            type:'error'
+          })
           }
         })
-      }
+        }
     }
+  }
 }
 </script>
 <style scoped>
