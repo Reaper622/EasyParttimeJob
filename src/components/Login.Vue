@@ -58,14 +58,15 @@ export default {
             confirmButtonText:'我知道了',
           })
         }else{
-          this.$axios.post('https://www.easy-mock.com/mock/5bdea625bc617620972b02aa/parttime/admin',{
+          console.log(this.usernameInput + '   ' + this.passwordInput);
+          this.$axios.post('/admin/adminLogin.do',{
           uid: this.usernameInput,
           psw: this.passwordInput
         })
         .then(res => {
-          console.log(res);
-          this.$store.commit('changeLoginState',res.data.data);
           if (res.data.status == 1) {
+            //把登录信息存入state
+            this.$store.commit('changeLoginState',res.data.data);
             this.$router.replace({name:'homeLink'});
           }else{
             this.$alert('登录失败!','通知',{

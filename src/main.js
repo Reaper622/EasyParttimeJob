@@ -10,6 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import 'es6-promise/auto'  //Vuex依赖
 Vue.use(ElementUI);
 Vue.use(VueRouter);
+Axios.defaults.baseURL = 'http://equator8848.xyz:8848/yian'; //设置基础路径
 Vue.prototype.$axios = Axios;
 
 const store = createStore()

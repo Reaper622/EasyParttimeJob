@@ -62,7 +62,7 @@ export default {
     methods:{
       //通过用户
       pass(){
-        this.$axios.post('https://www.easy-mock.com/mock/5bdea625bc617620972b02aa/parttime/auditAccount',{
+        this.$axios.post('http://equator8848.xyz:8848/yian/admin/auditAccount.do',{
           uid:this.userid, //用户的id
           action:1 //pass的标致
         })
@@ -77,7 +77,7 @@ export default {
       },
       //不通过用户
       dispass(){
-        this.$axios.post('https://www.easy-mock.com/mock/5bdea625bc617620972b02aa/parttime/auditAccount',{
+        this.$axios.post('http://equator8848.xyz:8848/yian/admin/auditAccount.do',{
           uid:this.userid, //用户的id
           action:0 //dispass的标致
         })

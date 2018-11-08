@@ -1,6 +1,6 @@
 <template>
     <div  class="main">
-        <member v-for="member in members" :key="member.id"
+        <member v-for="(member, index) in members" :key="index"
             :uid="member.uid"
             :name="member.name"
             :unit="member.unit"
@@ -13,7 +13,7 @@
 import Member from './MemberManagement/Member.vue'
 
 export default {
-    data() {
+    data () {
       return{
         members:[]
       }
@@ -27,11 +27,11 @@ export default {
       this.$emit('unloaded');
     },
     mounted(){
-      this.$axios.get('https://www.easy-mock.com/mock/5bdea625bc617620972b02aa/parttime/getAuditingAccount',{
+      this.$axios.get('http://equator8848.xyz:8848/yian/admin/getAuditingAccount.do',{
         page:1
       })
       .then((res) => {
-        this._data.members = res.data.data;
+        this._data.members = res.data.data.list;
         //加载完成触发已加载事件
         this.$emit('loaded');
       })
