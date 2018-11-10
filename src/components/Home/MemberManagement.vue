@@ -27,14 +27,18 @@ export default {
       this.$emit('unloaded');
     },
     mounted(){
-      this.$axios.get('http://equator8848.xyz:8848/yian/admin/getAuditingAccount.do',{
+      this.$axios.get('/admin/getAuditingAccount.do',{
         page:1
       })
       .then((res) => {
+        console.log(res);
         this._data.members = res.data.data.list;
         //加载完成触发已加载事件
         this.$emit('loaded');
       })
+    },
+    beforeDestroy() {
+
     }
 }
 </script>

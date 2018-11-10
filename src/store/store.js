@@ -14,7 +14,13 @@ export default () => {
     },
     mutations:{
       //修改登录态
-      changeLoginState(state,user){ //第一个参数为state，第二个是传递的参数
+      loginState(state,user){ //第一个参数为state，第二个是传递的参数
+        sessionStorage.setItem('uid',user.uid);
+        state.user.uid = user.uid,
+        state.user.name = user.name
+      },
+      loginOutState(state,user){ //第一个参数为state，第二个是传递的参数
+        sessionStorage.removeItem('uid');
         state.user.uid = user.uid,
         state.user.name = user.name
       }
@@ -25,6 +31,9 @@ export default () => {
         return state.user.name
       },
       getUid(state){
+        if(state.user.uid == null){
+          state.user.uid = sessionStorage.getItem('uid');
+        }
         return state.user.uid
       }
 

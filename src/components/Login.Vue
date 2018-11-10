@@ -59,20 +59,20 @@ export default {
           })
         }else{
           console.log(this.usernameInput + '   ' + this.passwordInput);
-          this.$axios.post('/admin/adminLogin.do',{
-          uid: this.usernameInput,
-          psw: this.passwordInput
-        })
-        .then(res => {
-          if (res.data.status == 1) {
-            //把登录信息存入state
-            this.$store.commit('changeLoginState',res.data.data);
-            this.$router.replace({name:'homeLink'});
-          }else{
-            this.$alert('登录失败!','通知',{
-            confirmButtonText:'我知道了',
-            type:'error'
-          })
+          let params = new URLSearchParams();
+          params.append('uid',this.usernameInput);
+          params.append('psw',this.passwordInput);
+          this.$axios.post('/admin/adminLogin.do',params)
+            .then(res => {
+            if (res.data.status == 1) {
+              //把登录信息存入state
+              this.$store.commit('loginState',{uid:this.usernameInput});
+              this.$router.replace({name:'homeLink'});
+            }else{
+              this.$alert('登录失败!','通知',{
+              confirmButtonText:'我知道了',
+              type:'error'
+            })
           }
         })
         }

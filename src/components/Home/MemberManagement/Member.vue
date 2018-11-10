@@ -62,10 +62,10 @@ export default {
     methods:{
       //通过用户
       pass(){
-        this.$axios.post('http://equator8848.xyz:8848/yian/admin/auditAccount.do',{
-          uid:this.userid, //用户的id
-          action:1 //pass的标致
-        })
+        let params = new URLSearchParams();
+        params.append('uid',this.uid); //用户的id
+        params.append('action',1); //pass的标致
+        this.$axios.post('/admin/auditAccount.do',params)
         .then((res) => {
           console.log(res);
           this.$message({
@@ -77,10 +77,10 @@ export default {
       },
       //不通过用户
       dispass(){
-        this.$axios.post('http://equator8848.xyz:8848/yian/admin/auditAccount.do',{
-          uid:this.userid, //用户的id
-          action:0 //dispass的标致
-        })
+        let params = new URLSearchParams();
+        params.append('uid',this.uid);//用户的id
+        params.append('action',0); //dispass的标致
+        this.$axios.post('/admin/auditAccount.do',params)
         .then((res) => {
           console.log(res);
           this.$message({

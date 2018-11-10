@@ -114,7 +114,7 @@ export default {
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.$store.commit('changeLoginState',{uid:null,name:null});
+          this.$store.commit('loginOutState',{uid:null,name:null});
           this.$router.replace({name:'loginLink'});
         }).catch(() => {
           this.$message({
