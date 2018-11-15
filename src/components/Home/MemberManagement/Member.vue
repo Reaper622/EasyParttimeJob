@@ -18,36 +18,37 @@
 
 <script>
 export default {
-    props: {
-      //人员编号
-      uid: {
-        type: Number,
-        required: true
-      },
-      //姓名
-      name: {
-        type: String,
-        required: true
-      },
-      // 公司、商家的地址
-      unit: {
-        type: String
-      },
-      //学校的地址
-      school:{
-        type: String
-      },
-      // 性别
-      sex: {
-        type: Number,
-        required: true
-      },
-      // 图片地址
-      photoUrl: {
-        type: String,
-        //required: true
-      }
-    },
+    props: ['uid','name','unit','school','sex','photoUrl'],
+    // props: {
+    //   //人员编号
+    //   uid: {
+    //     type: Number,
+    //     required: true
+    //   },
+    //   //姓名
+    //   name: {
+    //     type: String,
+    //     required: true
+    //   },
+    //   // 公司、商家的地址
+    //   unit: {
+    //     type: String
+    //   },
+    //   //学校的地址
+    //   school:{
+    //     type: String
+    //   },
+    //   // 性别
+    //   sex: {
+    //     type: Number,
+    //     required: true
+    //   },
+    //   // 图片地址
+    //   photoUrl: {
+    //     type: String,
+    //     //required: true
+    //   }
+    // },
     data(){
       return{
         //uid的data表现

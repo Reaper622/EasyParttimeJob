@@ -23,17 +23,23 @@ export default {
       this.$emit('unloaded');
     },
     mounted(){
-      this.$axios.get('https://www.easy-mock.com/mock/5bdea625bc617620972b02aa/parttime/getAuditingJob',{
-        page:1
+      this.loadHistoryJob();
+    },
+    methods:{
+      //得到历史兼职
+      loadHistoryJob(){
+        this.$axios.get('/admin/getHistory.do',{
+        params:{
+          page:1
+        }
       })
       .then(res => {
         console.log(res);
-        this._data.historyJobs = res.data.data;
+        this._data.historyJobs = res.data.data.list;
         //加载完成触发已加载事件
         this.$emit('loaded');
       })
-    },
-    methods:{
+      }
     },
     components:{
         HistoryJob

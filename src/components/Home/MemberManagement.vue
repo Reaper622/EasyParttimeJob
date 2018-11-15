@@ -28,7 +28,9 @@ export default {
     },
     mounted(){
       this.$axios.get('/admin/getAuditingAccount.do',{
-        page:1
+        params:{
+          page:1
+        }
       })
       .then((res) => {
         console.log(res);

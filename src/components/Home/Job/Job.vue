@@ -35,41 +35,55 @@ export default {
   props:['id','summary','jobTime','reward','rewardType','address','details','type'],
   data(){
     return{
-      jobId:0
-    }
-  },
-  watch:{
-    id:(newVal, oldVal) => {
-      this.jobId = newVal; //获取该兼职信息的id
+
     }
   },
   methods:{
     pass(){
         this.$axios.post('https://www.easy-mock.com/mock/5bdea625bc617620972b02aa/parttime/auditAccount',{
-          jobId:this.jobId, //兼职的id
+          jobId:this.id, //兼职的id
           action:1 //pass的标致
         })
         .then((res) => {
           console.log(res);
+          if(res.data.status == 1){
           this.$message({
             showClose:true,
             message: '你已通过此兼职!',
             type: 'success'
           });
+          this.$emit('refresh');
+          }
+          else{
+            this.$message({
+            showClose:true,
+            message: '操作失败!',
+            type: 'info'
+          });
+          }
         })
       },
     dispass(){
         this.$axios.post('https://www.easy-mock.com/mock/5bdea625bc617620972b02aa/parttime/auditAccount',{
-          jobId:this.jobId, //兼职的id
+          jobId:this.id, //兼职的id
           action:0 //dispass的标致
         })
         .then((res) => {
           console.log(res);
+          if(res.data.status == 1){
           this.$message({
             showClose:true,
             message: '你未批准此兼职!',
             type: 'error'
           });
+          this.$emit('refresh');
+          }else{
+            this.$message({
+            showClose:true,
+            message: '操作失败!',
+            type: 'info'
+          });
+          }
         })
       }
   }

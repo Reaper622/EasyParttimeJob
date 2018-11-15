@@ -8,7 +8,8 @@
               :reward-type="job.rewardType"
               :address="job.address"
               :details="job.details"
-              :type="job.type"></job>
+              :type="job.type"
+               @refresh="loadJobs"></job>
     </div>
 </template>
 <script>
@@ -23,17 +24,23 @@ export default {
       this.$emit('unloaded');
     },
     mounted(){
-      this.$axios.get('https://www.easy-mock.com/mock/5bdea625bc617620972b02aa/parttime/getAuditingJob',{
-        page:1
+      this.loadJobs();
+    },
+    methods:{
+      //得到待审核的兼职信息
+      loadJobs(){
+        this.$axios.get('/admin/getAuditingJob.do',{
+        params:{
+          page:1
+        }
       })
       .then(res => {
         console.log(res);
-        this._data.jobs = res.data.data;
+        this._data.jobs = res.data.data.list;
         //加载完成触发已加载事件
         this.$emit('loaded');
       })
-    },
-    methods:{
+      }
     },
     components:{
         Job
