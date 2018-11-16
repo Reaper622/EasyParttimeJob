@@ -34,7 +34,7 @@ export default {
       })
       .then((res) => {
         console.log(res);
-        this._data.members = res.data.data.list;
+        this.members = res.data.data.list;
         //加载完成触发已加载事件
         this.$emit('loaded');
       })

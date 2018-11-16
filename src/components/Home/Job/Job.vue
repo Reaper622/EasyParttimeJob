@@ -94,7 +94,7 @@ export default {
     .job{
         position: relative;
         display: inline-block;
-        width: 90%;
+        width: 80%;
         height: 375px;
         background: url('../../../assets/UserSystem/images/job/job.png') no-repeat;
         border: 1px solid #EBEEF5;

@@ -1,12 +1,16 @@
 <template>
   <div class="member">
-    <img :src="photoUrl" alt="验证照片" class="identifyImg">
+    <div class="identifyImg">
+      <img :src="photoUrl" alt="验证照片" class="identifyImgContent">
+    </div>
     <el-row class="attributeRow">
-      <el-col :span="8" :offset="2">用户ID:<span class="content">{{uid}}</span></el-col>
-      <el-col :span="8" :offset="2">用户名:<span class="content">{{name}}</span></el-col>
+      <el-col :span="20" :offset="2">用户ID:<span class="content">{{uid}}</span></el-col>
     </el-row>
     <el-row class="attributeRow">
-      <el-col :span="8" :offset="2">单位: <span class="content">{{unit != null?  unit : school}}</span></el-col>
+      <el-col :span="20" :offset="2">用户名:<span class="content">{{name}}</span></el-col>
+    </el-row>
+    <el-row class="attributeRow">
+      <el-col :span="8" :offset="2">单位: <span class="content">{{unit}}</span></el-col>
       <el-col :span="8" :offset="2">性别: <span class="content">{{sex == 0 ? "男" : "女"}}</span></el-col>
     </el-row>
     <el-row class="buttonRow">
@@ -19,36 +23,6 @@
 <script>
 export default {
     props: ['uid','name','unit','school','sex','photoUrl'],
-    // props: {
-    //   //人员编号
-    //   uid: {
-    //     type: Number,
-    //     required: true
-    //   },
-    //   //姓名
-    //   name: {
-    //     type: String,
-    //     required: true
-    //   },
-    //   // 公司、商家的地址
-    //   unit: {
-    //     type: String
-    //   },
-    //   //学校的地址
-    //   school:{
-    //     type: String
-    //   },
-    //   // 性别
-    //   sex: {
-    //     type: Number,
-    //     required: true
-    //   },
-    //   // 图片地址
-    //   photoUrl: {
-    //     type: String,
-    //     //required: true
-    //   }
-    // },
     data(){
       return{
         //uid的data表现
@@ -114,15 +88,24 @@ export default {
     box-shadow: 0 0 10px #888888;
   }
   .identifyImg{
+    cursor: pointer;
     position: relative;
     width: 350px;
     height: 200px;
     margin: 10px 25px 50px;
     border-radius: 10px;
   }
+  .identifyImg:hover{
+    transition: box-shadow .5s ease;
+    box-shadow: 0 0 10px #888888;
+  }
+  .identifyImgContent{
+    width: 100%;
+    height: 100%;
+  }
   .attributeRow{
-    height: 60px;
-    line-height: 60px;
+    height: 40px;
+    line-height: 40px;
     font-family:Aria
   }
   .content{

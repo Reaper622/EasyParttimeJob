@@ -8,7 +8,7 @@
                     </el-col>
                     <el-row class="headerRightRow" type="flex" justify="end">
                         <el-col :span="2">
-                            <el-badge :value="5"  class="item">
+                            <el-badge :value="0"  class="item">
                                 <el-button icon="el-icon-bell"  circle></el-button>
                             </el-badge>
                         </el-col>
@@ -147,12 +147,14 @@ export default {
          margin: auto 30px;
      }
     .el-aside {
-        background-color: #2B333E;
-        text-align: center;
+      background-color: #2B333E;
+      text-align: center;
+      min-height: 900px;
     }
     .el-main {
         margin-top: 10px;
-        height: 800px;
+        min-height: 100px;
+        height: 100%;
     }
     /*底部栏样式
     .el-footer{
