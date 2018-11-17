@@ -17,11 +17,11 @@
                   background
                   layout="prev, pager, next"
                   :total="total"
+                  :page-size="5"
                   @current-change="handleCurrentChange">
               </el-pagination>
             </el-col>
           </el-row>
-
         </div>
     </div>
 </template>
@@ -30,7 +30,6 @@ import Job from  './Job/Job.vue'
 export default {
     data() {
         return{
-          pageNum:0,
           jobs:[],
           total:null
         }
@@ -39,25 +38,21 @@ export default {
       this.$emit('unloaded');
     },
     mounted(){
-      //初始化页数
-      this.pageNum = 0;
-      this.loadJobs(this.pageNum);
+      this.loadJobs(1);
     },
     methods:{
       //得到待审核的兼职信息
       loadJobs(pageNum){
-        console.log(pageNum);
         this.$axios.get('/admin/getAuditingJob.do',{
         params:{
           page:pageNum
         }
       })
       .then(res => {
-        console.log(res);
         //给兼职列表增加数据
         this.jobs = res.data.data.list;
         //设置总页数
-        this.total = res.data.data.total * res.data.data.lastPage;
+        this.total = res.data.data.total;
         //加载完成触发已加载事件
         this.$emit('loaded');
       })

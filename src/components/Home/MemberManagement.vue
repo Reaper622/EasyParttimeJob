@@ -7,6 +7,19 @@
             :school="member.school"
             :sex="member.sex"
             :photo-url="member.photoUrl"></member>
+        <div class="pages">
+          <el-row type="flex" class="row-bg" justify="center">
+            <el-col :span="6">
+              <el-pagination
+                  background
+                  layout="prev, pager, next"
+                  :total="total"
+                  :page-size="5"
+                  @current-change="handleCurrentChange">
+              </el-pagination>
+            </el-col>
+          </el-row>
+        </div>
     </div>
 </template>
 <script>
@@ -15,6 +28,7 @@ import Member from './MemberManagement/Member.vue'
 export default {
     data () {
       return{
+        total:null,
         members:[]
       }
     },
@@ -22,26 +36,31 @@ export default {
       Member
     },
     methods: {
+      loadMembers(pageNum){
+        this.$axios.get('/admin/getAuditingAccount.do',{
+        params:{
+          page:pageNum
+        }
+      })
+      .then((res) => {
+        this.members = res.data.data.list;
+        this.total = res.data.data.total;
+        //加载完成触发已加载事件
+        this.$emit('loaded');
+      })
+      },
+       //处理页数变化
+      handleCurrentChange(val){
+        this.loadMembers(val);
+      }
     },
     beforeMount(){
       this.$emit('unloaded');
     },
     mounted(){
-      this.$axios.get('/admin/getAuditingAccount.do',{
-        params:{
-          page:1
-        }
-      })
-      .then((res) => {
-        console.log(res);
-        this.members = res.data.data.list;
-        //加载完成触发已加载事件
-        this.$emit('loaded');
-      })
+      this.loadMembers(1);
     },
-    beforeDestroy() {
 
-    }
 }
 </script>
 <style scoped>
