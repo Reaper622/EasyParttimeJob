@@ -1,7 +1,7 @@
 {
-  "name": "routerplansystem",
+  "name": "easyparttimejob",
   "version": "1.0.0",
-  "description": "RouterPlanSystem",
+  "description": "EasyParttimeJob",
   "author": "libowen <1064416560@qq.com>",
   "private": true,
   "scripts": {
@@ -9,12 +9,13 @@
     "start": "npm run dev",
     "build": "node build/build.js",
     "lint": "eslint --ext .js --ext .vue  src/",
-    "lint-fix": "eslint --fix --ext .js  --ext .vue src/"
+    "lint-fix": "eslint --fix --ext .js --ext .vue src/"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "^2.4.8",
     "es6-promise": "^4.2.5",
+    "qs": "^6.5.2",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
