@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import qs from 'qs'
 export default {
   props:['id','summary','jobTime','reward','rewardType','address','details','type'],
   data(){
@@ -40,10 +41,10 @@ export default {
   },
   methods:{
     pass(){
-        this.$axios.post('https://www.easy-mock.com/mock/5bdea625bc617620972b02aa/parttime/auditAccount',{
+        this.$axios.post('/admin/auditJob.do',qs.stringify({
           jobId:this.id, //兼职的id
           action:1 //pass的标致
-        })
+        }))
         .then((res) => {
           console.log(res);
           if(res.data.status == 1){
@@ -64,10 +65,10 @@ export default {
         })
       },
     dispass(){
-        this.$axios.post('https://www.easy-mock.com/mock/5bdea625bc617620972b02aa/parttime/auditAccount',{
+        this.$axios.post('/admin/auditJob.do',qs.stringify({
           jobId:this.id, //兼职的id
           action:0 //dispass的标致
-        })
+        }))
         .then((res) => {
           console.log(res);
           if(res.data.status == 1){
@@ -136,7 +137,7 @@ export default {
       width: 50%;
       height: 290px;
       margin-top: 10px;
-      margin-left: 100px;
+      margin-left: 5%;
       font-size: 18px;
       line-height: 24px;
       border-right: 10px solid #409EFF;
@@ -147,7 +148,7 @@ export default {
       text-indent: 2em;
     }
     .otherContent{
-      display: block;
+      display:block;
       width: 35%;
       float: right;
       margin-top: 10px;
@@ -157,6 +158,7 @@ export default {
     .contentRow{
       width: 100%;
       height: 80px;
+      overflow: hidden;
     }
     .contentRow img{
       display: block;

@@ -9,8 +9,8 @@
               :address="job.address"
               :details="job.details"
               :type="job.type"
-               @refresh="loadJobs"></job>
-        <div class="pages">
+               @refresh="loadJobs(pageNum)"></job>
+        <div class="pages" v-show="infoGetted">
           <el-row type="flex" class="row-bg" justify="center">
             <el-col :span="6">
               <el-pagination
@@ -18,7 +18,8 @@
                   layout="prev, pager, next"
                   :total="total"
                   :page-size="5"
-                  @current-change="handleCurrentChange">
+                  @current-change="handleCurrentChange"
+                  >
               </el-pagination>
             </el-col>
           </el-row>
@@ -30,8 +31,10 @@ import Job from  './Job/Job.vue'
 export default {
     data() {
         return{
+          pageNum:1,
           jobs:[],
-          total:null
+          total:null,
+          infoGetted:false
         }
     },
     beforeMount(){
@@ -51,8 +54,14 @@ export default {
       .then(res => {
         //给兼职列表增加数据
         this.jobs = res.data.data.list;
-        //设置总页数
-        this.total = res.data.data.total;
+        if(res.data.data.list.length !== 0){
+          //展示分页
+          this.infoGetted = true;
+          //设置总页数
+          this.total = res.data.data.total;
+        }else{
+          this.infoGetted =  false;
+        }
         //加载完成触发已加载事件
         this.$emit('loaded');
       })

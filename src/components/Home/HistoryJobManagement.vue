@@ -8,8 +8,9 @@
               :reward-type="job.rewardType"
               :address="job.address"
               :details="job.details"
-              :type="job.type"></history-job>
-        <div class="pages">
+              :type="job.type"
+              @refresh="loadHistoryJobs(pageNum)"></history-job>
+        <div class="pages" v-show="infoGetted">
           <el-row type="flex" class="row-bg" justify="center">
             <el-col :span="6">
               <el-pagination
@@ -29,8 +30,10 @@ import HistoryJob from  './Job/HistoryJob.vue'
 export default {
     data() {
         return{
+          pageNum:1,
           total:null,
-          historyJobs:[]
+          historyJobs:[],
+          infoGetted:false
         }
     },
     beforeMount(){
@@ -48,15 +51,22 @@ export default {
         }
       })
       .then(res => {
-        console.log(res);
         this.historyJobs = res.data.data.list;
-        this.total = res.data.data.total;
+        if(res.data.data.list.length !== 0){
+          //展示分页
+          this.infoGetted = true;
+          //设置总页数
+          this.total = res.data.data.total;
+        }else{
+          this.infoGetted =  false;
+        }
         //加载完成触发已加载事件
         this.$emit('loaded');
       })
       },
        //处理页数变化
       handleCurrentChange(val){
+        this.pageNum = val;
         this.loadHistoryJobs(val);
       }
     },

@@ -1,6 +1,7 @@
 <template>
     <div class="job">
         <div class="title">
+          <span class="id">{{id}}</span>
           <span class="summary">{{summary}}</span>
           <span class="time">{{jobTime}}</span>
         </div>
@@ -31,45 +32,43 @@
 </template>
 
 <script>
+import qs from 'qs'
 export default {
   props:['id','summary','jobTime','reward','rewardType','address','details','type'],
   data(){
     return{
-      jobId:0
-    }
-  },
-  watch:{
-    id:(newVal, oldVal) => {
-      this.jobId = newVal; //获取该兼职信息的id
+
     }
   },
   methods:{
     withdraw(){
-        this.$axios.post('https://www.easy-mock.com/mock/5bdea625bc617620972b02aa/parttime/auditAccount',{
-          jobId:this.jobId, //兼职的id
-          action:1 //pass的标致
-        })
+        this.$axios.post('/admin/auditJob.do',qs.stringify({
+          jobId:this.id, //兼职的id
+          action:0 //withdraw的标致
+        }))
         .then((res) => {
-          console.log(res);
+          console.log(res)
           this.$message({
             showClose:true,
             message: '你已撤回此兼职!',
             type: 'info'
-          });
+          })
+          this.$emit('refresh')
         })
       },
     deleteJob(){
-        this.$axios.post('https://www.easy-mock.com/mock/5bdea625bc617620972b02aa/parttime/auditAccount',{
-          jobId:this.jobId, //兼职的id
-          action:0 //dispass的标致
-        })
+        this.$axios.post('/admin/auditJob.do',qs.stringify({
+          jobId:this.id, //兼职的id
+          action:2 //delete的标致
+        }))
         .then((res) => {
-          console.log(res);
+          console.log(res)
           this.$message({
             showClose:true,
             message: '你已删除此兼职!',
             type: 'error'
-          });
+          })
+          this.$emit('refresh')
         })
       }
   }
@@ -103,6 +102,10 @@ export default {
         line-height: 60px;
         overflow: hidden;
     }
+    .id{
+      float: left;
+      margin-left: 20px;
+    }
     .summary{
       display: inline-block;
       margin-left: 40px;
@@ -111,6 +114,7 @@ export default {
       white-space:nowrap;
       text-overflow: ellipsis; /*超出部分用...代替*/
       overflow: hidden;
+      clear: both;
     }
     .time{
       float: right;
@@ -122,7 +126,7 @@ export default {
       width: 50%;
       height: 290px;
       margin-top: 10px;
-      margin-left: 100px;
+      margin-left: 5%;
       font-size: 18px;
       line-height: 24px;
       border-right: 10px solid #409EFF;
@@ -137,12 +141,13 @@ export default {
       width: 35%;
       float: right;
       margin-top: 10px;
-      margin-right: 50px;
+      margin-right: 5%;
       height: 300px;
     }
     .contentRow{
       width: 100%;
       height: 80px;
+      overflow: hidden;
     }
     .contentRow img{
       display: block;

@@ -30,6 +30,7 @@
     </div>
 </template>
 <script>
+import qs from 'qs'
 export default {
     name:'Login',
     data(){
@@ -58,11 +59,10 @@ export default {
             confirmButtonText:'我知道了',
           })
         }else{
-          console.log(this.usernameInput + '   ' + this.passwordInput);
-          let params = new URLSearchParams();
-          params.append('uid',this.usernameInput);
-          params.append('psw',this.passwordInput);
-          this.$axios.post('/admin/adminLogin.do',params)
+          this.$axios.post('/admin/adminLogin.do',qs.stringify({
+            uid:this.usernameInput,
+            psw:this.passwordInput
+          }))
             .then(res => {
             if (res.data.status == 1) {
               //把登录信息存入state
