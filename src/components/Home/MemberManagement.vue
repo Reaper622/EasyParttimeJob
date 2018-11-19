@@ -1,5 +1,8 @@
 <template>
     <div  class="main">
+        <div class="noInfoTip" v-show="!infoGetted">
+          <p>当前没有信息哦....</p>
+        </div>
         <member v-for="(member, index) in members" :key="index"
             :uid="member.uid"
             :name="member.name"
@@ -75,6 +78,13 @@ export default {
 }
 </script>
 <style scoped>
+  .noInfoTip{
+    position: relative;
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    color:rgba(158, 154, 154, 0.8);
+  }
   .searchInput{
     width: 250px;
     margin-left: 20px;

@@ -1,5 +1,8 @@
 <template>
     <div class="main">
+        <div class="noInfoTip" v-show="!infoGetted">
+          <p>当前没有信息哦....</p>
+        </div>
         <history-job v-for="job in historyJobs" :key="job.id"
               :id="job.id"
               :summary="job.summary"
@@ -76,6 +79,12 @@ export default {
 }
 </script>
 <style scoped>
-
+  .noInfoTip{
+    position: relative;
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    color:rgba(158, 154, 154, 0.8);
+  }
 </style>
 
