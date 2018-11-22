@@ -80,46 +80,40 @@ export default {
   }
 }
 </script>
-<style scoped>
-    .main{
-        position: absolute;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        height: 100%;
-        width: 100%;
-    }
-    .loginBody{
-        position: relative;
-        margin: auto;
-        width: 600px;
-        height: 500px;
-    }
-    .topImg{
-      position: absolute;
-      width: 600px;
-      height: 150px;
-      margin-left: 30px;
-    }
-    .loginSection{
-        position: relative;
-        display: inline-block;
-        vertical-align: top;
-        left: 125px;
-        top: 200px;
-        width: 350px;
-        height: 300px;
-    }
-    .row{
-        padding-bottom: 30px;
-    }
-    .buttons{
-        padding-top: 50px;
-    }
+<style lang="stylus" scoped>
+    .main
+      position absolute
+      display -webkit-box
+      display -ms-flexbox
+      display flex
+      -webkit-box-pack center
+      -ms-flex-pack center
+      justify-content center
+      -webkit-box-align center
+      -ms-flex-align center
+      align-items center
+      height 100%
+      width 100%
+    .loginBody
+      position relative
+      margin auto
+      width 600px
+      height 500px
+    .topImg
+      position absolute
+      width 600px
+      height 150px
+      margin-left 30px
+    .loginSection
+      position relative
+      display inline-block
+      vertical-align top
+      left 125px
+      top 200px
+      width 350px
+      height 300px
+    .row
+      padding-bottom 30px
+    .buttons
+      padding-top 50px
 </style>

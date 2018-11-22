@@ -127,60 +127,41 @@ export default {
     }
 }
 </script>
+<style lang="stylus" scoped>
+  @import "../common/stylus/variable.styl";
+  .home
+    position: absolute
+    width 100%
+    height 100%
+  .el-header
+    padding 0 15px
+    margin-top 10px
+    background #FFF
+    box-shadow 0px 5px 1px $shadowColor
+    .logo
+      width 250px
+      height 50px
+      margin auto 30px
+  .el-aside
+    background-color #2B333E
+    text-align center
+    min-height 900px
+  .el-main
+    margin-top 10px
+    min-height 100px
+    height 100%
+  .headerRightRow
+    height 60px
+    margin 5px 0
+  .username
+    line-height 40px
+  body
+  > .el-container
+    margin-bottom 40px;
+  .fade-enter-active, .fade-leave-active
+    transition opacity .5s
 
-<style scoped>
-     .home{
-       position: absolute;
-       width: 100%;
-       height: 100%;
-     }
-     .el-header{
-         padding: 0 15px;
-         margin-top: 10px;
-         background: #FFFFFF;
-         box-shadow: 0px 5px 1px #E5E5E9;
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+    opacity 0
 
-     }
-     .el-header .logo{
-         width: 250px;
-         height: 50px;
-         margin: auto 30px;
-     }
-    .el-aside {
-      background-color: #2B333E;
-      text-align: center;
-      min-height: 900px;
-    }
-    .el-main {
-        margin-top: 10px;
-        min-height: 100px;
-        height: 100%;
-    }
-    /*底部栏样式
-    .el-footer{
-        height: 60px;
-        text-align: center;
-        font-size: 20px;
-        color: gray;
-        line-height: 60px;
-        border-top: 5px solid #2B333E;
-    }
-    */
-    .headerRightRow{
-        height: 60px;
-        margin: 5px 0;
-    }
-    .username{
-        line-height: 40px;
-    }
-    body > .el-container {
-        margin-bottom: 40px;
-    }
-    .fade-enter-active, .fade-leave-active {
-        transition: opacity .5s;
-    }
-    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-        opacity: 0;
-    }
 </style>
-

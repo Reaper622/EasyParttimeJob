@@ -74,63 +74,52 @@ export default {
 }
 </script>
 
-
-<style scoped>
-  .member{
-    position: relative;
-    display: inline-block;
-    width: 400px;
-    height: 500px;
-    margin: 10px 15px;
-    background: url('../../../assets/UserSystem/images/memberManagement/memberBackground.png');
-    border: 3px solid #EBEEF5;
-    border-radius: 10px;
-    transition: box-shadow .3s ease;
-    overflow: hidden;
-
-  }
-  .member:hover{
-    box-shadow: 0 0 10px #888888;
-  }
-  .identifyImg{
+<style lang="stylus" scoped>
+   @import "../../../common/stylus/variable.styl";
+  .member
+    position relative
+    display inline-block
+    width 400px
+    height 500px
+    margin 10px 15px
+    background url('../../../assets/UserSystem/images/memberManagement/memberBackground.png')
+    border 3px solid #EBEEF5
+    border-radius: 10px
+    transition box-shadow .3s ease
+    overflow hidden
+  .member:hover
+    box-shadow: 0 0 10px $hoverShadow
+  .identifyImg
     cursor: pointer;
     position: relative;
     width: 350px;
     height: 200px;
     margin: 10px 25px 50px;
     border-radius: 10px;
-  }
-  .identifyImg:hover{
-    transition: box-shadow .5s ease;
-    box-shadow: 0 0 10px #888888;
-  }
-  .identifyImgContent{
-    width: 100%;
-    height: 100%;
-  }
-  .attributeRow{
-    height: 40px;
-    line-height: 40px;
-    font-family:Aria
-  }
-  .content{
-    padding-left: 20px;
-  }
-  .buttonRow{
-    margin-top: 30px;
-  }
-  .flag{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 120px;
-    height: 50px;
-    text-align: center;
-    font-size: 26px;
-    font-weight: bold;
-    line-height: 50px;
-    color: white;
-    border-radius: 10px;
-  }
+    &:hover
+      transition box-shadow .5s ease
+      box-shadow 0 0 10px $hoverShadow
+  .identifyImgContent
+    width 100%
+    height 100%
+  .attributeRow
+    height 40px
+    line-height 40px
+    font-family Aria
+  .content
+    padding-left 20px
+  .buttonRow
+    margin-top 30px
+  .flag
+    position absolute
+    bottom 0
+    right 0
+    width 120px
+    height 50px
+    text-align center
+    font-size 26px
+    font-weight bold
+    line-height 50px
+    color white
+    border-radius 10px
 </style>
-

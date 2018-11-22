@@ -80,18 +80,15 @@ export default {
     }
 }
 </script>
-<style scoped>
-  .noInfoTip{
-    position: relative;
-    width: 100%;
-    height: 60px;
-    text-align: center;
-    color:rgba(158, 154, 154, 0.8);
-  }
-  .pages{
-    width: 90%;
-    height: 40px;
-    margin-top: 20px;
-  }
+<style lang="stylus" scoped>
+  .noInfoTip
+    position relative
+    width 100%
+    height 60px
+    text-align center
+    color rgba(158, 154, 154, 0.8)
+  .pages
+    width 90%
+    height 40px
+    margin-top 20px
 </style>
-

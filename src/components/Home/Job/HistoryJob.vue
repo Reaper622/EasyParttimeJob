@@ -74,98 +74,85 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-    .job{
-        position: relative;
-        display: inline-block;
-        width: 90%;
-        height: 375px;
-        background: url('../../../assets/UserSystem/images/job/job.png') no-repeat;
-        border: 1px solid #EBEEF5;
-        border-radius: 10px;
-        transition: box-shadow .3s ease;
-        overflow: hidden;
-        margin-bottom: 20px;
-    }
-    .job:hover{
-        box-shadow: 0 0 10px #888888;
-    }
-    .title{
-        position: relative;
-        width: 100%;
-        height: 60px;
-        background: #409EFF;
-        text-align: left;
-        font-size: 20px;
-        color: white;
-        line-height: 60px;
-        overflow: hidden;
-    }
-    .id{
-      float: left;
-      margin-left: 20px;
-    }
-    .summary{
-      display: inline-block;
-      margin-left: 40px;
-      max-width: 15em;  /*限制最长为15个字*/
-      max-height: 3em;
-      white-space:nowrap;
-      text-overflow: ellipsis; /*超出部分用...代替*/
-      overflow: hidden;
-      clear: both;
-    }
-    .time{
-      float: right;
-      padding-right: 30px;
-      z-index: 10;
-    }
-    .detail{
-      display: inline-block;
-      width: 50%;
-      height: 290px;
-      margin-top: 10px;
-      margin-left: 5%;
-      font-size: 18px;
-      line-height: 24px;
-      border-right: 10px solid #409EFF;
-      overflow: hidden;
-    }
-    .detailContent{
-      padding: 10px 30px;
-      text-indent: 2em;
-    }
-    .otherContent{
-      display: block;
-      width: 35%;
-      float: right;
-      margin-top: 10px;
-      margin-right: 5%;
-      height: 300px;
-    }
-    .contentRow{
-      width: 100%;
-      height: 80px;
-      overflow: hidden;
-    }
-    .contentRow img{
-      display: block;
-      float: left;
-      width: 40px;
-      height: 40px;
-      margin: 20px 20px;
-    }
-    .contentRow span{
-      width: auto;
-      font-size: 18px;
-      line-height: 80px;
-      clear: left;
-    }
-    .buttons{
-      float: right;
-      margin-left: 20px;
-    }
+<style lang="stylus" scoped>
+  @import "../../../common/stylus/variable.styl";
+  .job
+    position relative
+    display inline-block
+    width 90%
+    height 375px
+    background url('../../../assets/UserSystem/images/job/job.png') no-repeat
+    border 1px solid #EBEEF5
+    border-radius 10px
+    transition box-shadow .3s ease
+    overflow hidden
+    margin-bottom 20px
+    &:hover
+      box-shadow: 0 0 10px $hoverShadow;
+  .title
+    position relative
+    width 100%
+    height 60px
+    background $baseColor
+    text-align left
+    font-size 20px
+    color white
+    line-height 60px
+    overflow hidden
+  .id
+    float left
+    margin-left 20px
+  .summary
+    display inline-block
+    margin-left 40px
+    max-width 15em  /*限制最长为15个字*/
+    max-height 3em
+    white-space nowrap
+    text-overflow ellipsis /*超出部分用...代替*/
+    overflow hidden
+    clear both
+  .time
+    float right
+    padding-right 30px
+    z-index 10
+  .detail
+    display: inline-block
+    width 50%
+    height 290px
+    margin-top 10px
+    margin-left 5%
+    font-size 18px
+    line-height 24px
+    border-right 10px solid $baseColor
+    overflow hidden
+  .detailContent
+    padding 10px 30px
+    text-indent 2em
+  .otherContent
+    display block
+    width 35%
+    float right
+    margin-top 10px
+    margin-right 5%
+    height 300px
+  .contentRow
+    width 100%
+    height 80px
+    overflow hidden
+    img
+      display block
+      float left
+      width 40px
+      height 40px
+      margin 20px 20px
+    span
+      width auto
+      font-size 18px
+      line-height 80px
+      clear left
+  .buttons
+    float right
+    margin-left 20px
 </style>
 
 

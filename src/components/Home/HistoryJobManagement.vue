@@ -78,13 +78,11 @@ export default {
     }
 }
 </script>
-<style scoped>
-  .noInfoTip{
-    position: relative;
-    width: 100%;
-    height: 60px;
-    text-align: center;
-    color:rgba(158, 154, 154, 0.8);
-  }
+<style lang="stylus" scoped>
+  .noInfoTip
+    position relative
+    width 100%
+    height  60px
+    text-align  center
+    color rgba(158, 154, 154, 0.8)
 </style>
-

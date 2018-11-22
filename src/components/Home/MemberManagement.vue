@@ -77,28 +77,23 @@ export default {
 
 }
 </script>
-<style scoped>
-  .noInfoTip{
-    position: relative;
-    width: 100%;
-    height: 60px;
-    text-align: center;
-    color:rgba(158, 154, 154, 0.8);
-  }
-  .searchInput{
-    width: 250px;
-    margin-left: 20px;
-  }
-  .addButton{
-    float: right;
-    margin-right: 50px;
-  }
-  .deleteButton{
-    float: right;
-    margin-right: 100px;
-  }
-  .selectedCar{
-    border: 2px solid #409EFF;
-  }
+<style lang="stylus" scoped>
+  @import "../../common/stylus/variable.styl";
+  .noInfoTip
+    position relative
+    width 100%
+    height 60px
+    text-align center
+    color rgba(158, 154, 154, 0.8)
+  .searchInput
+    width 250px
+    margin-left 20px
+  .addButton
+    float right
+    margin-right 50px
+  .deleteButton
+    float right
+    margin-right 100px
+  .selectedCar
+    border 2px solid $baseColor
 </style>
-
