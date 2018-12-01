@@ -10,7 +10,7 @@
       <el-col :span="20" :offset="2">用户名:<span class="content">{{name}}</span></el-col>
     </el-row>
     <el-row class="attributeRow">
-      <el-col :span="20" :offset="2">单位: <span class="content">{{unit}}</span></el-col>
+      <el-col :span="20" :offset="2">单位: <span class="content">{{unit != null ? unit : school}}</span></el-col>
     </el-row>
     <el-row class="attributeRow">
       <el-col :span="10" :offset="2">性别: <span class="content">{{sex}}</span></el-col>
