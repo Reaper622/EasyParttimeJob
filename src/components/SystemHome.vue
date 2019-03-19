@@ -48,7 +48,11 @@
                         :router="true">
                         <el-menu-item index="/home/memberManagement">
                             <i class="el-icon-menu"></i>
-                            <span slot="title">用户审核</span>
+                            <span slot="title">学生审核</span>
+                        </el-menu-item>
+                        <el-menu-item index="/home/merchantManagement">
+                            <i class="el-icon-menu"></i>
+                            <span slot="title">商家审核</span>
                         </el-menu-item>
                         <el-menu-item index="/home/jobExamine">
                             <i class="el-icon-date"></i>

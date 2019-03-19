@@ -59,14 +59,14 @@ export default {
             confirmButtonText:'我知道了',
           })
         }else{
-          this.$axios.post('/admin/adminLogin.do',qs.stringify({
+          this.$axios.post('/manager/login.do',qs.stringify({
             uid:this.usernameInput,
             psw:this.passwordInput
           }))
             .then(res => {
-            if (res.data.status == 1) {
+            if (res.data.status == 2000) {
               //把登录信息存入state
-              this.$store.commit('loginState',{uid:this.usernameInput});
+              this.$store.commit('loginState', res.data.data);
               this.$router.replace({name:'homeLink'});
             }else{
               this.$alert('登录失败!','通知',{

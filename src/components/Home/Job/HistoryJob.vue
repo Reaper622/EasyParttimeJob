@@ -15,11 +15,9 @@
           </div>
           <div class="contentRow">
             <img src="../../../assets/UserSystem/Icon/money.png" alt="报酬图标">
-            <span>{{reward}}元/{{rewardType}}</span>
+            <span>{{reward}}元/{{rewardType == 0 ? '时' : rewardType == 1 ? '日' : '月'}}</span>
           </div>
           <div class="contentRow">
-            <img src="../../../assets/UserSystem/Icon/type.png" alt="类型图标">
-            <span>{{type}}</span>
           </div>
           <div class="buttonRow">
             <el-button type="danger" icon="el-icon-delete" @click="deleteJob"  plain class="buttons">删除</el-button>
@@ -42,7 +40,7 @@ export default {
   },
   methods:{
     withdraw(){
-        this.$axios.post('/admin/auditJob.do',qs.stringify({
+        this.$axios.post('/manager/dealJob.do',qs.stringify({
           jobId:this.id, //兼职的id
           action:0 //withdraw的标致
         }))
@@ -57,7 +55,7 @@ export default {
         })
       },
     deleteJob(){
-        this.$axios.post('/admin/auditJob.do',qs.stringify({
+        this.$axios.post('/manager/dealJob.do',qs.stringify({
           jobId:this.id, //兼职的id
           action:2 //delete的标致
         }))

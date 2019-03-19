@@ -31,6 +31,7 @@
 </template>
 <script>
 import Job from  './Job/Job.vue'
+import qs from 'qs'
 export default {
     data() {
         return{
@@ -49,11 +50,10 @@ export default {
     methods:{
       //得到待审核的兼职信息
       loadJobs(pageNum){
-        this.$axios.get('/admin/getAuditingJob.do',{
-        params:{
-          page:pageNum
-        }
-      })
+        this.$axios.post('/manager/getAuditingJobs.do',qs.stringify({
+          pageNum:pageNum,
+          pageSize: 5
+      }))
       .then(res => {
         //给兼职列表增加数据
         this.jobs = res.data.data.list;

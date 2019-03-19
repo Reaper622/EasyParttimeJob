@@ -17,13 +17,10 @@
             <span>{{reward}}元/{{rewardType}}</span>
           </div>
           <div class="contentRow">
-            <img src="../../../assets/UserSystem/Icon/type.png" alt="类型图标">
-            <span>{{type}}</span>
           </div>
           <div class="buttonRow">
             <el-button type="danger" icon="el-icon-close" @click="dispass"  plain class="buttons">拒绝</el-button>
             <el-button type="success" icon="el-icon-check" @click="pass"  class="buttons">通过</el-button>
-
           </div>
         </div>
 
@@ -41,7 +38,7 @@ export default {
   },
   methods:{
     pass(){
-        this.$axios.post('/admin/auditJob.do',qs.stringify({
+        this.$axios.post('/manager/dealJob.do',qs.stringify({
           jobId:this.id, //兼职的id
           action:1 //pass的标致
         }))
@@ -65,7 +62,7 @@ export default {
         })
       },
     dispass(){
-        this.$axios.post('/admin/auditJob.do',qs.stringify({
+        this.$axios.post('/manager/dealJob.do',qs.stringify({
           jobId:this.id, //兼职的id
           action:0 //dispass的标致
         }))

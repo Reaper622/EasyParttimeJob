@@ -30,6 +30,7 @@
 </template>
 <script>
 import HistoryJob from  './Job/HistoryJob.vue'
+import qs from 'qs'
 export default {
     data() {
         return{
@@ -48,11 +49,10 @@ export default {
     methods:{
       //得到历史兼职
       loadHistoryJobs(pageNum){
-        this.$axios.get('/admin/getHistory.do',{
-        params:{
-          page:pageNum
-        }
-      })
+        this.$axios.post('/manager/getAuditJobHistory.do', qs.stringify({
+          pageNum:pageNum,
+          pagSize: 5
+      }))
       .then(res => {
         this.historyJobs = res.data.data.list;
         if(res.data.data.list.length !== 0){

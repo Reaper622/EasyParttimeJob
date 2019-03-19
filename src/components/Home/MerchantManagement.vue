@@ -37,7 +37,7 @@ export default {
         total:null,
         members:[],
         infoGetted:false,
-        type: 'student'
+        type: 'merchant'
       }
     },
     components: {
@@ -45,7 +45,7 @@ export default {
     },
     methods: {
       loadMembers(pageNum){
-        this.$axios.get('/manager/getAuditingStudentAccount.do',{
+        this.$axios.get('/manager/getAuditingMerchantAccount.do',{
         params:{
           page:pageNum
         }
