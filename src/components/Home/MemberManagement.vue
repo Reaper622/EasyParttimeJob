@@ -10,6 +10,7 @@
             :school="member.school"
             :sex="member.sex"
             :photo-url="member.auditImg"
+            :student="true"
             :type="type"
             @refresh="loadMembers(pageNum)"></member>
         <div class="pages" v-show="infoGetted">
@@ -51,6 +52,7 @@ export default {
         }
       })
       .then((res) => {
+        console.log(res)
         this.members = res.data.data.list;
         if(res.data.data.list.length !== 0){
           //展示分页

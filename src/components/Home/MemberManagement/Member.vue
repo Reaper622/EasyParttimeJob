@@ -9,7 +9,7 @@
     <el-row class="attributeRow">
       <el-col :span="20" :offset="2">用户名:<span class="content">{{name}}</span></el-col>
     </el-row>
-    <el-row class="attributeRow">
+    <el-row class="attributeRow" v-show="!student">
       <el-col :span="20" :offset="2">单位: <span class="content">{{unit != null ? unit : school}}</span></el-col>
     </el-row>
     <el-row class="attributeRow">
@@ -25,7 +25,7 @@
 <script>
 import qs from 'qs'
 export default {
-    props: ['uid','name','unit','school','sex','photoUrl','type'],
+    props: ['uid','name','unit','school','sex','photoUrl','type','student'],
     data(){
       return{
         //uid的data表现

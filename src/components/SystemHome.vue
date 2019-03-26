@@ -4,7 +4,7 @@
             <el-header>
                 <el-row class="headerRow"  :gutter="20" >
                     <el-col :span="8">
-                        <img class="logo" src="../assets/UserSystem/images/parttime.png" alt="Logo">
+                        <img class="logo" src="../assets/UserSystem/images/longLogo.png" alt="Logo">
                     </el-col>
                     <el-row class="headerRightRow" type="flex" justify="end">
                         <el-col :span="2">
@@ -24,7 +24,7 @@
                                 </el-dropdown-menu>
                             </el-dropdown>
                         </el-col>
-                        <el-col :span="3">
+                        <el-col :span="5">
                             <span class="username">欢迎,{{username}}</span>
                         </el-col>
                         <el-col :span="3">
