@@ -51,9 +51,10 @@ export default {
       loadHistoryJobs(pageNum){
         this.$axios.post('/manager/getAuditJobHistory.do', qs.stringify({
           pageNum:pageNum,
-          pagSize: 5
+          pageSize: 5
       }))
       .then(res => {
+        console.log(res)
         this.historyJobs = res.data.data.list;
         if(res.data.data.list.length !== 0){
           //展示分页
