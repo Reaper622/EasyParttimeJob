@@ -40,10 +40,10 @@ export default {
     methods:{
       //通过用户
       pass(){
-        if (type === 'student') {
+        if (this.student) {
           this.$axios.post('/manager/dealStudentInfo.do',qs.stringify({
             uid:this.uid, //用户的id
-            action:1 //pass的标致
+            action:3 //pass的标致
           }))
             .then((res) => {
               console.log(res);
@@ -57,7 +57,7 @@ export default {
         } else {
           this.$axios.post('/manager/dealMerchantInfo.do',qs.stringify({
           uid:this.uid, //用户的id
-          action:1 //pass的标致
+          action:2 //pass的标致
           }))
             .then((res) => {
               console.log(res);
