@@ -3,9 +3,9 @@
         <div class="noInfoTip" v-show="!infoGetted">
           <p>当前没有信息哦....</p>
         </div>
-        <job v-for="job in jobs" :key="job.id"
-              :id="job.id"
-              :summary="job.summary"
+        <job v-for="job in jobs" :key="job.jobId"
+              :id="job.jobId"
+              :summary="job.jobSummary"
               :job-time="job.jobTime"
               :reward="job.reward"
               :reward-type="job.rewardType"
@@ -55,6 +55,7 @@ export default {
           pageSize: 5
       }))
       .then(res => {
+        console.log(res)
         //给兼职列表增加数据
         this.jobs = res.data.data.list;
         if(res.data.data.list.length !== 0){

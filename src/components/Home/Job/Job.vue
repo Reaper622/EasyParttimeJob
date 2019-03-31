@@ -38,6 +38,7 @@ export default {
   },
   methods:{
     pass(){
+        console.log(this.id)
         this.$axios.post('/manager/dealJob.do',qs.stringify({
           jobId:this.id, //兼职的id
           action:1 //pass的标致

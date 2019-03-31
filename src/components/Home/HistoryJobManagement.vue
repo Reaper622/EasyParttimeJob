@@ -3,9 +3,9 @@
         <div class="noInfoTip" v-show="!infoGetted">
           <p>当前没有信息哦....</p>
         </div>
-        <history-job v-for="job in historyJobs" :key="job.id"
-              :id="job.id"
-              :summary="job.summary"
+        <history-job v-for="job in historyJobs" :key="job.jobId"
+              :id="job.jobId"
+              :summary="job.jobSummary"
               :job-time="job.jobTime"
               :reward="job.reward"
               :reward-type="job.rewardType"
