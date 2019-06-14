@@ -3,9 +3,9 @@
         <div class="noInfoTip" v-show="!infoGetted">
           <p>当前没有信息哦....</p>
         </div>
-        <history-job v-for="job in historyJobs" :key="job.id"
-              :id="job.id"
-              :summary="job.summary"
+        <history-job v-for="job in historyJobs" :key="job.jobId"
+              :id="job.jobId"
+              :summary="job.jobSummary"
               :job-time="job.jobTime"
               :reward="job.reward"
               :reward-type="job.rewardType"
@@ -30,6 +30,7 @@
 </template>
 <script>
 import HistoryJob from  './Job/HistoryJob.vue'
+import qs from 'qs'
 export default {
     data() {
         return{
@@ -48,12 +49,12 @@ export default {
     methods:{
       //得到历史兼职
       loadHistoryJobs(pageNum){
-        this.$axios.get('/admin/getHistory.do',{
-        params:{
-          page:pageNum
-        }
-      })
+        this.$axios.post('/manager/getAuditJobHistory.do', qs.stringify({
+          pageNum:pageNum,
+          pageSize: 5
+      }))
       .then(res => {
+        console.log(res)
         this.historyJobs = res.data.data.list;
         if(res.data.data.list.length !== 0){
           //展示分页

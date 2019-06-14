@@ -10,7 +10,6 @@
             :school="member.school"
             :sex="member.sex"
             :photo-url="member.auditImg"
-            :student="true"
             :type="type"
             @refresh="loadMembers(pageNum)"></member>
         <div class="pages" v-show="infoGetted">
@@ -38,7 +37,7 @@ export default {
         total:null,
         members:[],
         infoGetted:false,
-        type: 'student'
+        type: 'merchant'
       }
     },
     components: {
@@ -46,13 +45,12 @@ export default {
     },
     methods: {
       loadMembers(pageNum){
-        this.$axios.get('/manager/getAuditingStudentAccount.do',{
+        this.$axios.get('/manager/getAuditingMerchantAccount.do',{
         params:{
           page:pageNum
         }
       })
       .then((res) => {
-        console.log(res)
         this.members = res.data.data.list;
         if(res.data.data.list.length !== 0){
           //展示分页

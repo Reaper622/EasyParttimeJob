@@ -9,7 +9,7 @@
     <el-row class="attributeRow">
       <el-col :span="20" :offset="2">用户名:<span class="content">{{name}}</span></el-col>
     </el-row>
-    <el-row class="attributeRow">
+    <el-row class="attributeRow" v-show="!student">
       <el-col :span="20" :offset="2">单位: <span class="content">{{unit != null ? unit : school}}</span></el-col>
     </el-row>
     <el-row class="attributeRow">
@@ -25,7 +25,7 @@
 <script>
 import qs from 'qs'
 export default {
-    props: ['uid','name','unit','school','sex','photoUrl'],
+    props: ['uid','name','unit','school','sex','photoUrl','type','student'],
     data(){
       return{
         //uid的data表现
@@ -40,36 +40,69 @@ export default {
     methods:{
       //通过用户
       pass(){
-        this.$axios.post('/admin/auditAccount.do',qs.stringify({
+        if (this.student) {
+          this.$axios.post('/manager/dealStudentInfo.do',qs.stringify({
+            uid:this.uid, //用户的id
+            action:3 //pass的标致
+          }))
+            .then((res) => {
+              console.log(res);
+              this.$message({
+                showClose:true,
+                message: '你已通过此用户!',
+                type: 'success'
+              });
+              this.$emit('refresh'); //触发刷新事件
+            })
+        } else {
+          this.$axios.post('/manager/dealMerchantInfo.do',qs.stringify({
           uid:this.uid, //用户的id
-          action:1 //pass的标致
-        }))
-        .then((res) => {
-          console.log(res);
-          this.$message({
-            showClose:true,
-            message: '你已通过此用户!',
-            type: 'success'
-          });
-          this.$emit('refresh'); //触发刷新事件
-        })
+          action:2 //pass的标致
+          }))
+            .then((res) => {
+              console.log(res);
+              this.$message({
+                showClose:true,
+                message: '你已通过此用户!',
+                type: 'success'
+              });
+              this.$emit('refresh'); //触发刷新事件
+            })
+        }
       },
       //不通过用户
       dispass(){
-        this.$axios.post('/admin/auditAccount.do',qs.stringify({
-          uid:this.uid, //用户的id
-          action:0 //dispass的标致
-        }))
-        .then((res) => {
-          console.log(res);
-          this.$message({
-            showClose:true,
-            message: '你未批准此用户!',
-            type: 'error'
-          });
-          this.$emit('refresh'); //触发刷新事件
-        })
+        if (type === 'student') {
+          this.$axios.post('/manager/dealStudentInfo.do',qs.stringify({
+            uid:this.uid, //用户的id
+            action:0 //dispass的标致
+          }))
+          .then((res) => {
+            console.log(res);
+            this.$message({
+              showClose:true,
+              message: '你未批准此用户!',
+              type: 'error'
+            });
+            this.$emit('refresh'); //触发刷新事件
+          })
+        } else {
+          this.$axios.post('/manager/dealMerchantInfo.do',qs.stringify({
+            uid:this.uid, //用户的id
+            action:0 //dispass的标致
+          }))
+          .then((res) => {
+            console.log(res);
+            this.$message({
+              showClose:true,
+              message: '你未批准此用户!',
+              type: 'error'
+            });
+            this.$emit('refresh'); //触发刷新事件
+          })
+        }
       }
+
     }
 }
 </script>

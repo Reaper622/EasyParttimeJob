@@ -4,6 +4,7 @@ import SystemHome from '@/components/SystemHome'
 
 //二级路由
 import MemberManagement from '@/components/Home/MemberManagement'
+import MerchantManagement from '@/components/Home/MerchantManagement'
 import JobExamine from '@/components/Home/JobExamine'
 import HistoryJobManagement from '@/components/Home/HistoryJobManagement'
 import SystemSetting from '@/components/Home/SystemSetting'
@@ -29,6 +30,14 @@ export const routes = [
 				path:'/home/memberManagement',
 				name:'memberManagementLink',
 				component:MemberManagement,
+				meta:{
+					requireLogin:true
+				}
+			},
+			{
+				path:'/home/MerchantManagement',
+				name:'merchantManagementLink',
+				component:MerchantManagement,
 				meta:{
 					requireLogin:true
 				}

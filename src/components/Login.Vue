@@ -1,7 +1,8 @@
 <template>
     <div class="main">
        <div class="loginBody">
-          <img src="../assets/UserSystem/images/parttime.png" alt="logo" class="topImg" />
+          <img src="../assets/UserSystem/images/longLogo.png" alt="logo" class="topImg" />
+
           <div class="loginSection">
                    <el-row type="flex" class="row" justify="center">
                        <el-col :span="16">
@@ -59,14 +60,14 @@ export default {
             confirmButtonText:'我知道了',
           })
         }else{
-          this.$axios.post('/admin/adminLogin.do',qs.stringify({
+          this.$axios.post('/manager/login.do',qs.stringify({
             uid:this.usernameInput,
             psw:this.passwordInput
           }))
             .then(res => {
-            if (res.data.status == 1) {
+            if (res.data.status == 2000) {
               //把登录信息存入state
-              this.$store.commit('loginState',{uid:this.usernameInput});
+              this.$store.commit('loginState', res.data.data);
               this.$router.replace({name:'homeLink'});
             }else{
               this.$alert('登录失败!','通知',{
@@ -82,36 +83,20 @@ export default {
 </script>
 <style lang="stylus" scoped>
     .main
-      position absolute
-      display -webkit-box
-      display -ms-flexbox
       display flex
-      -webkit-box-pack center
-      -ms-flex-pack center
       justify-content center
-      -webkit-box-align center
-      -ms-flex-align center
-      align-items center
       height 100%
       width 100%
     .loginBody
-      position relative
-      margin auto
-      width 600px
-      height 500px
+      display flex
+      justify-items center
+      flex-direction column
     .topImg
-      position absolute
-      width 600px
-      height 150px
-      margin-left 30px
+      display block
+      margin-top 200px
     .loginSection
-      position relative
-      display inline-block
-      vertical-align top
-      left 125px
-      top 200px
-      width 350px
-      height 300px
+      display block
+      margin-top 50px
     .row
       padding-bottom 30px
     .buttons

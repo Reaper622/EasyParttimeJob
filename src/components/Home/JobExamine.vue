@@ -3,9 +3,9 @@
         <div class="noInfoTip" v-show="!infoGetted">
           <p>当前没有信息哦....</p>
         </div>
-        <job v-for="job in jobs" :key="job.id"
-              :id="job.id"
-              :summary="job.summary"
+        <job v-for="job in jobs" :key="job.jobId"
+              :id="job.jobId"
+              :summary="job.jobSummary"
               :job-time="job.jobTime"
               :reward="job.reward"
               :reward-type="job.rewardType"
@@ -31,6 +31,7 @@
 </template>
 <script>
 import Job from  './Job/Job.vue'
+import qs from 'qs'
 export default {
     data() {
         return{
@@ -49,12 +50,12 @@ export default {
     methods:{
       //得到待审核的兼职信息
       loadJobs(pageNum){
-        this.$axios.get('/admin/getAuditingJob.do',{
-        params:{
-          page:pageNum
-        }
-      })
+        this.$axios.post('/manager/getAuditingJobs.do',qs.stringify({
+          pageNum:pageNum,
+          pageSize: 5
+      }))
       .then(res => {
+        console.log(res)
         //给兼职列表增加数据
         this.jobs = res.data.data.list;
         if(res.data.data.list.length !== 0){
