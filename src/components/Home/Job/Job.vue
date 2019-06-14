@@ -65,7 +65,7 @@ export default {
     dispass(){
         this.$axios.post('/manager/dealJob.do',qs.stringify({
           jobId:this.id, //兼职的id
-          action:0 //dispass的标致
+          action:2 //dispass的标致
         }))
         .then((res) => {
           console.log(res);
